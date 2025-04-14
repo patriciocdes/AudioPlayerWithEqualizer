@@ -64,8 +64,6 @@ public class Playback {
 
     public void bindService() {
         Intent intent = new Intent(context, AudioService.class);
-
-        context.startForegroundService(intent);
         context.bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
