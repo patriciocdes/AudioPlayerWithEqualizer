@@ -1,0 +1,43 @@
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+/build
+/captures
+local.properties
+
+# Pastas de build do Gradle
+.gradle/
+build/
+**/build/
+
+# Arquivos compilados e pacotes de aplicação
+*.apk
+*.ap_
+*.aab
+
+# Arquivos e pastas do Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Logs
+*.log
+
+# Arquivos gerados pelo CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Pastas geradas pelo build nativo
+externalNativeBuild/
+.cxx/
+
+# Arquivos do sistema
+.DS_Store

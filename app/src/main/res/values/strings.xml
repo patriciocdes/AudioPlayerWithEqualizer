@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AudioPlayer With Equalizer</string>
+    <string name="musica_pausada">Música pausada.</string>
+    <string name="musica_parada">Música parada.</string>
+    <string name="musica_tocando">Música tocando.</string>
+    <string name="unknown_info">Desconhecido</string>
+    <string name="music_stopped_time">00:00</string>
+</resources>
