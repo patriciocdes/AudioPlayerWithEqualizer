@@ -12,11 +12,13 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.widget.RemoteViews;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.core.app.NotificationCompat;
 
 import com.patriciocds.audioplayerequalizer.PlaybackCallback;
@@ -39,14 +41,17 @@ public class AudioService extends Service {
     public static final String EXTRA_SEEK_POSITION = "seekPosition";
     public static final String EXTRA_VOLUME = "newVolume";
 
-    private static final String CHANNEL_ID = "AUDIO_SERVICE_CHANNEL_A";
+    @VisibleForTesting
+    static final String CHANNEL_ID = "AUDIO_SERVICE_CHANNEL_A";
 
-    private MediaPlayer mediaPlayer;
+    @VisibleForTesting
+    MediaPlayer mediaPlayer;
+    @VisibleForTesting
+    AudioManager audioManager;
+
     private MusicData musicData;
 
-    private AudioManager audioManager;
-
-    private final Handler progressHandler = new Handler();
+    private final Handler progressHandler = new Handler(Looper.getMainLooper());
 
     private final Runnable progressRunnable = new Runnable() {
         @Override
@@ -63,7 +68,8 @@ public class AudioService extends Service {
 
     private final RemoteCallbackList<PlaybackCallback> playbackCallback = new RemoteCallbackList<>();
 
-    private final PlaybackInterface.Stub binder = new PlaybackInterface.Stub() {
+    @VisibleForTesting
+    final PlaybackInterface.Stub binder = new PlaybackInterface.Stub() {
 
         @Override
         public boolean isPlaying() {
@@ -182,7 +188,8 @@ public class AudioService extends Service {
         }
     }
 
-    private Notification createNotification(String musicTitle, String musicArtist) {
+    @VisibleForTesting
+    Notification createNotification(String musicTitle, String musicArtist) {
         Intent notificationIntent = new Intent(this, MainActivity.class);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(
@@ -303,7 +310,8 @@ public class AudioService extends Service {
         }
     }
 
-    private boolean isPlaying() {
+    @VisibleForTesting
+    boolean isPlaying() {
         return mediaPlayer != null && mediaPlayer.isPlaying();
     }
 
